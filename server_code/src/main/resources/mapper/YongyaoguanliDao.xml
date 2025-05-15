@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cl.dao.YongyaoguanliDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.cl.entity.YongyaoguanliEntity" id="yongyaoguanliMap">
+        <result property="yaopinmingcheng" column="yaopinmingcheng"/>
+        <result property="guige" column="guige"/>
+        <result property="fuyongjiliang" column="fuyongjiliang"/>
+        <result property="meirifuyongcishu" column="meirifuyongcishu"/>
+        <result property="qishifuyongshijian" column="qishifuyongshijian"/>
+        <result property="yujijieshushijian" column="yujijieshushijian"/>
+        <result property="yonghuzhanghao" column="yonghuzhanghao"/>
+        <result property="yonghuxingming" column="yonghuxingming"/>
+    </resultMap>
+
+    <select id="selectListView"
+		resultType="com.cl.entity.view.YongyaoguanliView" >
+
+		SELECT  yongyaoguanli.* FROM yongyaoguanli  yongyaoguanli 	        
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectView"
+		resultType="com.cl.entity.view.YongyaoguanliView" >
+		SELECT * FROM yongyaoguanli  yongyaoguanli <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+
+
+</mapper>
