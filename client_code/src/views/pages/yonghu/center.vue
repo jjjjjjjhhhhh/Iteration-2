@@ -24,7 +24,7 @@
 						{{item.child[0].menu}}
 					</div>
 				</template>
-				<div class="usersTab" @click="tabClick({tableName:'family'})">家庭成员</div>
+				<div class="usersTab" @click="tabClick({tableName:'family'})">Family members</div>
                 <div class="usersTab" v-if="btnAuth('storeup','查看')" @click="tabClick({tableName:'storeup',type:1})">My Collection</div>
 			</div>
 			<div class="usersBox updateInfo" v-if="tabIndex=='center'">

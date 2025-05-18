@@ -4,13 +4,13 @@
         <div class="breadcrumb-wrapper" style="margin-bottom: 20px;">
             <div class="bread_view">
                 <el-breadcrumb separator="/" class="breadcrumb">
-                    <el-breadcrumb-item :to="{ path: '/index' }">首页</el-breadcrumb-item>
-                    <el-breadcrumb-item :to="{ path: '/index/yonghuCenter' }">用户中心</el-breadcrumb-item>
-                    <el-breadcrumb-item>家庭成员</el-breadcrumb-item>
+                    <el-breadcrumb-item :to="{ path: '/index' }">Index</el-breadcrumb-item>
+                    <el-breadcrumb-item :to="{ path: '/index/yonghuCenter' }">User center</el-breadcrumb-item>
+                    <el-breadcrumb-item>Family members</el-breadcrumb-item>
                 </el-breadcrumb>
             </div>
             <div class="back_view">
-                <el-button class="back_btn" type="primary" @click="handleBack">返回</el-button>
+                <el-button class="back_btn" type="primary" @click="handleBack">Back</el-button>
             </div>
         </div>
 
@@ -20,16 +20,16 @@
                 <el-col :span="16">
                     <el-input
                         v-model="searchForm.name"
-                        placeholder="请输入成员姓名搜索"
+                        placeholder="Please enter member name to search"
                         style="width: 200px; margin-right: 10px;"
                         clearable
                         @keyup.enter="handleSearch"
                     />
-                    <el-button type="primary" @click="handleSearch">搜索</el-button>
-                    <el-button @click="resetSearch">重置</el-button>
+                    <el-button type="primary" @click="handleSearch">Search</el-button>
+                    <el-button @click="resetSearch">Reset</el-button>
                 </el-col>
                 <el-col :span="8" style="text-align: right;">
-                    <el-button type="success" @click="handleAdd">添加家庭成员</el-button>
+                    <el-button type="success" @click="handleAdd">Add family members</el-button>
                 </el-col>
             </el-row>
         </div>
@@ -42,16 +42,16 @@
             v-loading="listLoading"
             element-loading-text="加载中..."
         >
-            <el-table-column prop="yonghuzhanghao" label="用户账号" width="120" />
-            <el-table-column prop="yonghuxingming" label="用户姓名" width="120" />
-            <el-table-column prop="relationship" label="关系" width="100" />
-            <el-table-column prop="shoujihaoma" label="联系电话" width="140" />
-            <el-table-column prop="remark" label="备注" min-width="200" show-overflow-tooltip />
+            <el-table-column prop="yonghuzhanghao" label="User Account" width="120" />
+            <el-table-column prop="yonghuxingming" label="User Name" width="120" />
+            <el-table-column prop="relationship" label="Relationship" width="100" />
+            <el-table-column prop="shoujihaoma" label="Phone Number" width="140" />
+            <el-table-column prop="remark" label="Remark" min-width="200" show-overflow-tooltip />
             <el-table-column label="操作" width="220" fixed="right">
                 <template #default="scope">
-                    <el-button type="primary" link @click="handleEdit(scope.row)">编辑</el-button>
-                    <el-button type="success" link @click="handleHealth(scope.row)">健康状态</el-button>
-                    <el-button type="danger" link @click="handleDelete(scope.row)">删除</el-button>
+                    <el-button type="primary" link @click="handleEdit(scope.row)">Edit</el-button>
+                    <el-button type="success" link @click="handleHealth(scope.row)">Health Status</el-button>
+                    <el-button type="danger" link @click="handleDelete(scope.row)">Delete</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -78,27 +78,27 @@
             @closed="handleDialogClosed"
         >
             <el-form :model="formData" :rules="rules" ref="formRef" label-width="100px">
-                <el-form-item label="用户搜索" v-if="!formData.id">
+                <el-form-item label="User Search" v-if="!formData.id">
                     <div style="display: flex; gap: 10px;">
                         <el-input 
                             v-model="searchUsername" 
-                            placeholder="请输入用户账号"
+                            placeholder="Please enter the user account"
                             style="flex: 1;"
                             @keyup.enter="searchUser"
                         />
-                        <el-button type="primary" @click="searchUser">搜索</el-button>
+                        <el-button type="primary" @click="searchUser">Search</el-button>
                     </div>
                 </el-form-item>
                 <template v-if="selectedUser">
                     <div style="margin-bottom: 20px; padding: 10px; background-color: #f5f7fa; border-radius: 4px;">
-                        <div style="margin-bottom: 10px;">搜索到的用户信息：</div>
-                        <div>用户账号：{{selectedUser.yonghuzhanghao}}</div>
-                        <div>用户姓名：{{selectedUser.yonghuxingming}}</div>
-                        <div>联系电话：{{selectedUser.shoujihaoma}}</div>
+                        <div style="margin-bottom: 10px;">User information found:</div>
+                        <div>User Acconut：{{selectedUser.yonghuzhanghao}}</div>
+                        <div>User Name：{{selectedUser.yonghuxingming}}</div>
+                        <div>Phone Number：{{selectedUser.shoujihaoma}}</div>
                     </div>
                 </template>
-                <el-form-item label="关系" prop="relationship">
-                    <el-select v-model="formData.relationship" placeholder="请选择关系" style="width: 100%;">
+                <el-form-item label="Relationship" prop="relationship">
+                    <el-select v-model="formData.relationship" placeholder="Please select relationship " style="width: 100%;">
                         <el-option
                             v-for="item in relationshipOptions"
                             :key="item.value"
@@ -107,77 +107,77 @@
                         />
                     </el-select>
                 </el-form-item>
-                <el-form-item label="备注" prop="remark">
+                <el-form-item label="Remark" prop="remark">
                     <el-input 
                         v-model="formData.remark" 
                         type="textarea" 
                         :rows="3" 
-                        placeholder="请输入备注信息"
+                        placeholder="Please enter remark"
                     />
                 </el-form-item>
             </el-form>
             <template #footer>
                 <span class="dialog-footer">
-                    <el-button @click="dialogVisible = false">取消</el-button>
-                    <el-button type="primary" @click="handleSubmit">确定</el-button>
+                    <el-button @click="dialogVisible = false">Cancel</el-button>
+                    <el-button type="primary" @click="handleSubmit">True</el-button>
                 </span>
             </template>
         </el-dialog>
 
         <!-- 健康档案弹窗 -->
         <el-dialog
-            title="健康档案"
+            title="HealthDialogVisible"
             v-model="healthDialogVisible"
             width="600px"
         >
             <div v-if="healthData" class="health-info">
                 <div class="health-item">
-                    <span class="label">用户姓名：</span>
+                    <span class="label">User Name：</span>
                     <span class="value">{{healthData.yonghuxingming}}</span>
                 </div>
                 <div class="health-item">
-                    <span class="label">性别：</span>
+                    <span class="label">Sex：</span>
                     <span class="value">{{healthData.xingbie}}</span>
                 </div>
                 <div class="health-item">
-                    <span class="label">出生日期：</span>
+                    <span class="label">Date of Birth:：</span>
                     <span class="value">{{healthData.chushengriqi}}</span>
                 </div>
                 <div class="health-item">
-                    <span class="label">年龄：</span>
+                    <span class="label">Age：</span>
                     <span class="value">{{healthData.nianling}}</span>
                 </div>
                 <div class="health-item">
-                    <span class="label">身高：</span>
+                    <span class="label">High：</span>
                     <span class="value">{{healthData.shengao}}</span>
                 </div>
                 <div class="health-item">
-                    <span class="label">体重：</span>
+                    <span class="label">weight：</span>
                     <span class="value">{{healthData.tizhong}}</span>
                 </div>
                 <div class="health-item">
-                    <span class="label">血型：</span>
+                    <span class="label">Blood style：</span>
                     <span class="value">{{healthData.xuexing}}</span>
                 </div>
                 <div class="health-item">
-                    <span class="label">既往病史：</span>
+                    <span class="label">Medical history:</span>
                     <span class="value">{{healthData.jiwangbingshi}}</span>
                 </div>
                 <div class="health-item">
-                    <span class="label">家族病史：</span>
+                    <span class="label">Family medical history:</span>
                     <span class="value">{{healthData.jiazubingshi}}</span>
                 </div>
                 <div class="health-item">
-                    <span class="label">过敏药物：</span>
+                    <span class="label">Allergy medication:</span>
                     <span class="value">{{healthData.guominyaowu}}</span>
                 </div>
             </div>
             <div v-else class="no-data">
-                暂无健康档案信息
+                There is currently no health record information available
             </div>
             <template #footer>
                 <span class="dialog-footer">
-                    <el-button @click="healthDialogVisible = false">关闭</el-button>
+                    <el-button @click="healthDialogVisible = false">Close</el-button>
                 </span>
             </template>
         </el-dialog>
@@ -195,7 +195,7 @@ const router = useRouter()
 
 // 基础信息
 const tableName = 'jiatingchengyuan'
-const formName = '家庭成员'
+const formName = 'Family members'
 
 // 数据列表相关
 const dataList = ref([])
@@ -230,20 +230,20 @@ const formData = reactive({
 
 // 关系选项
 const relationshipOptions = [
-    { value: '父亲', label: '父亲' },
-    { value: '母亲', label: '母亲' },
-    { value: '儿子', label: '儿子' },
-    { value: '女儿', label: '女儿' },
-    { value: '配偶', label: '配偶' },
-    { value: '祖父', label: '祖父' },
-    { value: '祖母', label: '祖母' },
-    { value: '其他', label: '其他' }
+    { value: 'Father', label: '父亲' },
+    { value: 'Mother', label: '母亲' },
+    { value: 'Son', label: '儿子' },
+    { value: 'daughter', label: '女儿' },
+    { value: 'Wife', label: '配偶' },
+    { value: 'GrandFather', label: '祖父' },
+    { value: 'GrandMother', label: '祖母' },
+    { value: 'Other', label: '其他' }
 ]
 
 // 表单验证规则
 const rules = {
-    relationship: [{ required: true, message: '请选择关系', trigger: 'change' }],
-    remark: [{ required: false, message: '请输入备注信息', trigger: 'blur' }]
+    relationship: [{ required: true, message: 'Please select relationship', trigger: 'change' }],
+    remark: [{ required: false, message: 'Please enter remark', trigger: 'blur' }]
 }
 
 // 用户搜索相关
@@ -315,13 +315,13 @@ const getList = () => {
         } else {
             dataList.value = []
             total.value = 0
-            ElMessage.error(res.data.msg || '获取数据失败')
+            ElMessage.error(res.data.msg || 'Failed to retrieve data')
         }
     }).catch(error => {
-        console.error('获取数据列表失败：', error)
+        console.error('Failed to retrieve data:', error)
         dataList.value = []
         total.value = 0
-        ElMessage.error(error.response?.data?.error || '获取数据失败')
+        ElMessage.error(error.response?.data?.error || 'Failed to retrieve data')
     })
 }
 
@@ -378,7 +378,7 @@ const searchUser = async () => {
             console.log('用户数据已更新:', formData)
         } else {
             console.log('未找到用户')
-            ElMessage.warning('未找到相关用户')
+            ElMessage.warning('No relevant users found')
             selectedUser.value = null
             // 清空相关表单数据
             formData.userId = ''
@@ -388,13 +388,13 @@ const searchUser = async () => {
         }
     } catch (error) {
         console.error('搜索用户失败：', error)
-        ElMessage.error('搜索用户失败')
+        ElMessage.error('No relevant users found')
     }
 }
 
 // 添加成员
 const handleAdd = () => {
-    dialogTitle.value = '添加家庭成员'
+    dialogTitle.value = 'Add family members'
     dialogVisible.value = true
     selectedUser.value = null
     searchUsername.value = ''
@@ -415,7 +415,7 @@ const handleAdd = () => {
 
 // 编辑成员
 const handleEdit = (row) => {
-    dialogTitle.value = '编辑家庭成员'
+    dialogTitle.value = 'Edit family members'
     dialogVisible.value = true
     Object.keys(formData).forEach(key => {
         formData[key] = row[key]
@@ -432,20 +432,20 @@ const handleEdit = (row) => {
 
 // 删除成员
 const handleDelete = (row) => {
-    ElMessageBox.confirm('确定要删除该家庭成员吗？', '提示', {
+    ElMessageBox.confirm('Are you sure you want to delete this family member?', 'Tip', {
         type: 'warning'
     }).then(async () => {
         try {
             const res = await proxy.$http.post('/jiatingchengyuan/delete', [row.id])
             if (res.data.code === 0) {
-                ElMessage.success('删除成功')
+                ElMessage.success('Delete Success')
                 getList()
             } else {
-                ElMessage.error(res.data.msg || '删除失败')
+                ElMessage.error(res.data.msg || 'Fail to delete')
             }
         } catch (error) {
             console.error('删除失败：', error)
-            ElMessage.error('删除失败')
+            ElMessage.error('Fail to delete')
         }
     }).catch(() => {})
 }
@@ -456,7 +456,7 @@ const handleSubmit = async () => {
     
     // 添加新成员时的额外验证
     if (!formData.id && !formData.userId) {
-        ElMessage.warning('请先搜索并选择用户')
+        ElMessage.warning('Please search and select the user first')
         return
     }
 
@@ -475,18 +475,18 @@ const handleSubmit = async () => {
                     : '/jiatingchengyuan/save'
                 const res = await proxy.$http.post(url, formData)
                 if (res.data.code === 0) {
-                    ElMessage.success(formData.id ? '修改成功' : '添加成功')
+                    ElMessage.success(formData.id ? 'Modified successfully' : 'Add successfully')
                     dialogVisible.value = false
                     getList() // 刷新列表
                 } else {
-                    ElMessage.error(res.data.msg || '提交失败')
+                    ElMessage.error(res.data.msg || 'Fail to submit')
                 }
             } catch (error) {
                 console.error('提交失败：', error)
-                ElMessage.error('提交失败')
+                ElMessage.error('Fail to submit')
             }
         } else {
-            console.log('表单验证失败')
+            console.log('Fail')
             return false
         }
     })
@@ -526,17 +526,17 @@ const handleHealth = async (row) => {
             healthData.value = res.data.data
             healthDialogVisible.value = true
         } else {
-            ElMessage.warning('未找到该用户的健康档案')
+            ElMessage.warning('The users health profile was not found')
         }
     } catch (error) {
         console.error('获取健康档案失败：', error)
-        ElMessage.error('获取健康档案失败')
+        ElMessage.error('Failed to obtain health records')
     }
 }
 
 // 页面加载时获取数据
 onMounted(() => {
-    console.log('页面加载，开始获取数据')
+    console.log('Page loading, starting to retrieve data')
     getList()
 })
 </script>
